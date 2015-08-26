@@ -3,9 +3,6 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.Stack;
-
 
 public final class Main {
 
@@ -14,103 +11,26 @@ public final class Main {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		ArrayList<String> output = new ArrayList<String>();
+		float a;
+		float b;
+		float c;
 		
-		while (true)
-		{
-			int size = (new Integer(reader.readLine())).intValue();
-			if (size == 0)
-			{
-				break;
-			}
-			while (true)
-			{
-				String line = reader.readLine();
-				String[] split = line.split(" ");
-				if (split[0].equals("0"))
-				{
-					break;
-				}
-				Stack<Integer> stackA = new Stack<Integer>();
-				Stack<Integer> stackB = new Stack<Integer>();
-				Stack<Integer> stackC = new Stack<Integer>();
-				// swap the values at the left and right indices
-				/*for (int left = 0, right = split.length - 1; left < right; left++, right--) {
-			        String temp = split[left];
-			        split[left]  = split[right];
-			        split[right] = temp;
-			    }*/
-				for (int i = 0; i < size; i++)
-				{
-					stackB.push(new Integer(split[i]));
-				}
-				
-				boolean fail = false;
-				int aux = 0;
-				for (int i = 1; i <= size; i++)
-				{
-					aux = 0;
-					if (!stackC.isEmpty() && (stackC.peek() == i))
-					{
-						stackA.push(stackC.pop());
-					}
-					else
-					{
-						if (!stackB.isEmpty())
-						{
-							boolean found = false;
-							while (!stackB.isEmpty())
-							{
-								aux = stackB.pop();
-								if (aux == i)
-								{
-									stackA.push(aux);
-									found = true;
-									break;
-								}
-								else
-								{
-									stackC.push(aux);
-								}
-							}
-							if (!found)
-							{
-								fail = true;
-								break;
-							}
-						}
-						else
-						{
-							fail = true;
-						}
-					}
-					if (fail)
-					{
-						break;
-					}
-				}
-				if (!stackB.isEmpty() || !stackC.isEmpty())
-				{
-					fail = true;
-				}
-				
-				if (fail)
-				{
-					output.add("No\n");
-				}
-				else
-				{
-					output.add("Yes\n");
-				}
-			}
-			output.add("\n");
-		}
-		
-		for (int i = 0; i < output.size(); i++)
-		{
-			writer.write(output.get(i));
-		}
+		// Read the input
+		String line = reader.readLine();
+		String[] split = line.split(" ");
+		a = new Float(split[0]);
+		b = new Float(split[1]);
+		c = new Float(split[2]);
 
+		if (((a + b) > c) && ((b + c) > a) && ((c + a) > b))
+		{
+			writer.write(String.format("Perimetro = %2.1f\n", (a + b + c)));
+		}
+		else
+		{
+			writer.write(String.format("Area = %2.1f\n", (((a + b) * c) / 2)));
+		}
+		
 		writer.flush();
 		reader.close();
 		writer.close();
