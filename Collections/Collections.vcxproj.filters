@@ -1,17 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <ClCompile Include="io.cpp">
+      <Filter>io</Filter>
+    </ClCompile>
+    <ClCompile Include="Stack.cpp">
+      <Filter>collections</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedList.cpp">
+      <Filter>collections</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Collections.cpp" />
-    <ClCompile Include="LinkedList.cpp" />
-    <ClCompile Include="Stack.cpp" />
-    <ClCompile Include="io.cpp" />
+    <ClInclude Include="io.h">
+      <Filter>io</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack.h">
+      <Filter>collections</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedList.h">
+      <Filter>collections</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LinkedList.h" />
-    <ClInclude Include="Stack.h" />
-    <ClInclude Include="io.h" />
+    <Filter Include="io">
+      <UniqueIdentifier>{2fe8bef6-7a21-444b-bf5c-e19fc877bfd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="collections">
+      <UniqueIdentifier>{627873a4-7d59-4a11-a1b3-a288850eed1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

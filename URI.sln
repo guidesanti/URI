@@ -5,13 +5,18 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1669_All_Discs_Considered", "1669_All_Discs_Considered\1669_All_Discs_Considered.vcxproj", "{A2232DB6-70E7-4725-A720-CFC091821DD5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Collections", "Collections\Collections.vcxproj", "{B0F23E6B-BED3-41BA-A2ED-4787DE77CD7C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Common", "Collections\Collections.vcxproj", "{B0F23E6B-BED3-41BA-A2ED-4787DE77CD7C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1405_The_Halting_Problem", "1405_The_Halting_Problem\1405_The_Halting_Problem.vcxproj", "{7689CB6E-7695-4960-89BD-BD0F38DDCEB9}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1162_Train_Swapping", "1162_Train_Swapping\1162_Train_Swapping.vcxproj", "{467D673F-7E2C-4072-8887-8B4AE8C7E5B5}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1258_T-Shirts", "1258_T-Shirts\1258_T-Shirts.vcxproj", "{11C9D1AD-7C5B-4C05-9FDA-FBACDC762C10}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9D132947-2E0A-4C22-92D3-7C66594B6324}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
