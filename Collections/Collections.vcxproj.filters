@@ -7,9 +7,11 @@
     <ClCompile Include="Collections.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="Stack.cpp" />
+    <ClCompile Include="io.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Stack.h" />
+    <ClInclude Include="io.h" />
   </ItemGroup>
 </Project>

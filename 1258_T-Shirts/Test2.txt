@@ -1,0 +1,12 @@
+Input:
+3
+Jose da Silva
+vermelho P
+Andre Camargo
+branco G
+Vania Pereira
+branco M
+0
+
+Output:
+?
