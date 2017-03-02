@@ -48,6 +48,16 @@ char* readWord(void) {
 		return NULL;
 	}
 
+	// Find the start of the word
+	while (1) {
+		ch = fgetc(stdin);
+		if ((ch != ' ') && (ch != '\n') && (ch != EOF)) {
+			word[index++] = ch;
+			break;
+		}
+	}
+
+	// Read the word
 	while (1) {
 		ch = fgetc(stdin);
 		if ((ch == ' ') || (ch == '\n') || (ch == EOF)) {

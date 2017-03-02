@@ -59,7 +59,7 @@ int Stack_Clear(Stack* stack) {
 	return STACK_OK;
 }
 
-int Stack_Push(Stack* stack, int data) {
+int Stack_Push(Stack* stack, StackDataType data) {
 	if (!stack) {
 		return STACK_NULL_ARG;
 	}
@@ -77,7 +77,7 @@ int Stack_Push(Stack* stack, int data) {
 	return STACK_OK;
 }
 
-int Stack_Pop(Stack* stack, int* data) {
+int Stack_Pop(Stack* stack, StackDataType* data) {
 	if ((!stack) || (!data)) {
 		return STACK_NULL_ARG;
 	}

@@ -7,10 +7,11 @@
     <ClCompile Include="LinkedList.cpp">
       <Filter>collections</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Stack.cpp">
       <Filter>collections</Filter>
     </ClCompile>
-    <ClCompile Include="Stack.cpp">
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Queue.cpp">
       <Filter>collections</Filter>
     </ClCompile>
   </ItemGroup>
@@ -22,6 +23,12 @@
       <Filter>collections</Filter>
     </ClInclude>
     <ClInclude Include="Stack.h">
+      <Filter>collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Queue.h">
+      <Filter>collections</Filter>
+    </ClInclude>
+    <ClInclude Include="DoublyLinkedList.h">
       <Filter>collections</Filter>
     </ClInclude>
   </ItemGroup>

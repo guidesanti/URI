@@ -1,0 +1,34 @@
+Input:
+3
+boston    3
+sao-paulo 4
+waterloo  5
+10 san-antonio
+atlanta   san-antonio 2
+boston    dallas      4
+dallas    san-antonio 3
+denver    san-antonio 3
+houston   san-antonio 6
+sao-paulo atlanta     2
+sao-paulo houston     3
+waterloo  atlanta     1
+waterloo  denver      3
+waterloo  houston     2
+1
+san-francisco 11
+7 new-york
+san-francisco denver   5
+san-francisco houston  6
+denver        atlanta  4
+denver        chicago  2
+houston       atlanta  5
+atlanta       now-york 7
+chicago       new-york 4
+0
+
+Output:
+Instancia 1
+viavel
+
+Instancia 2
+inviavel

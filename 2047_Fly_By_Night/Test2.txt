@@ -1,0 +1,22 @@
+Input:
+3
+valinhos  5
+sao-paulo 5
+louveira  1
+11 campinas
+valinhos    indaiatuba  3
+valinhos    vinhedo     10
+sao-paulo   indaiatuba  20
+sao-paulo   vinhedo     3
+sao-paulo   hortolandia 5
+indaiatuba  campinas    2
+vinhedo     campinas    2
+hortolandia campinas    6
+valinhos    limeira     1
+limeira     campinas    5
+louveira    hortolandia 1
+0
+
+Output:
+Instancia 1
+viavel
