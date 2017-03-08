@@ -14,7 +14,6 @@ struct City {
 	char*	name;
 	int		numberOfPassengers;
 	int		numberOfSeats;
-	int		numberOfFlightsIn;
 	int		numberOfFlightsOut;
 };
 
@@ -91,7 +90,6 @@ void AddCity(char* name, int numberOfPassengers) {
 	city->name = name;
 	city->numberOfPassengers = numberOfPassengers;
 	city->numberOfSeats = 0;
-	city->numberOfFlightsIn = 0;
 	city->numberOfFlightsOut = 0;
 }
 
@@ -100,7 +98,6 @@ void AddEventCity(char* name) {
 	city->name = name;
 	city->numberOfPassengers = 0;
 	city->numberOfSeats = 0;
-	city->numberOfFlightsIn = 0;
 	city->numberOfFlightsOut = 0;
 	eventCity = city;
 }
@@ -132,19 +129,17 @@ void AddFlight(char* srcCityName, char* dstCityName, int numberOfSeats) {
 		srcCity = &cities[numberOfCities++];
 		srcCity->name = srcCityName;
 		srcCity->numberOfPassengers = 0;
-		srcCity->numberOfFlightsIn = 0;
+		srcCity->numberOfSeats = 0;
 		srcCity->numberOfFlightsOut = 0;
 	}
-	srcCity->numberOfSeats += numberOfSeats;
 	srcCity->numberOfFlightsOut++;
 	if (!dstCity) {
 		dstCity = &cities[numberOfCities++];
 		dstCity->name = dstCityName;
 		dstCity->numberOfPassengers = 0;
-		dstCity->numberOfFlightsIn = 0;
+		dstCity->numberOfSeats = 0;
 		dstCity->numberOfFlightsOut = 0;
 	}
-	dstCity->numberOfFlightsIn++;
 
 	// Add the flight to the list
 	Flight* newFlight = (Flight*)malloc(sizeof(Flight));
@@ -162,7 +157,6 @@ void AddFlight(char* srcCityName, char* dstCityName, int numberOfSeats) {
 
 void RemoveFlight(Flight* flight) {
 	flight->src->numberOfFlightsOut--;
-	flight->dst->numberOfFlightsIn--;
 
 	if (flight == flights) {
 		flights = flight->next;
@@ -224,101 +218,27 @@ int main() {
 			AddFlight(cityName, cityName2, numberOfSeats);
 		}
 
-		while (1) {
-			int count = 0;
-			Flight* flight = flights;
-			Flight* obsoleteFlight = NULL;
-			while (flight) {
-				if ((flight->dst != eventCity) && (flight->dst->numberOfFlightsOut == 0)) {
-					obsoleteFlight = flight;
-					count++;
-				}
-				flight = flight->next;
-				if (obsoleteFlight) {
-					RemoveFlight(obsoleteFlight);
-					obsoleteFlight = NULL;
-				}
+		// Calculate the viability
+		viable = 1;
+		Flight* flight = flights;
+		Flight* obsoleteFlight = NULL;
+		while (flights) {
+			if (flight->dst->numberOfFlightsOut == 0) {
+				flight->src->numberOfSeats += flight->numberOfSeats;
+				obsoleteFlight = flight;
 			}
-			if (!count) {
-				break;
+			flight = flight->next;
+			if (obsoleteFlight) {
+				RemoveFlight(obsoleteFlight);
+				obsoleteFlight = NULL;
+			}
+			if (!flight) {
+				flight = flights;
 			}
 		}
-
-		// Calculate the viability
-		int stop = 0;
-		viable = 0;
-		while (1) {
-			int count = 0;
-			Flight* flight = flights;
-			while (flight) {
-				Flight* obsoleteFlight = NULL;
-				if ((flight->src->numberOfPassengers == 0) && (flight->src->numberOfFlightsIn == 0)) {
-					obsoleteFlight = flight;
-				} else if ((flight->src->numberOfPassengers > 0) && (flight->src->numberOfFlightsIn == 0)) {
-					if ((flight->src->numberOfFlightsOut == 1) && (flight->src->numberOfFlightsIn == 0)) {
-						if (flight->src->numberOfPassengers <= flight->numberOfSeats) {
-							flight->dst->numberOfPassengers += flight->src->numberOfPassengers;
-							flight->dst->numberOfSeats -= flight->src->numberOfPassengers;
-							flight->src->numberOfPassengers = 0;
-							obsoleteFlight = flight;
-						} else {
-							stop = 1;
-							break;
-						}
-						count++;
-					} else if (flight->dst->numberOfFlightsIn == 1) {
-						int nPassengers = 0;
-						if (flight->numberOfSeats <= flight->dst->numberOfSeats) {
-							nPassengers = flight->numberOfSeats;
-						} else {
-							nPassengers = flight->dst->numberOfSeats;
-						}
-						flight->dst->numberOfPassengers += nPassengers;
-						flight->dst->numberOfSeats -= nPassengers;
-						flight->src->numberOfPassengers -= nPassengers;
-						obsoleteFlight = flight;
-						count++;
-					}
-				}
-				flight = flight->next;
-				if (obsoleteFlight) {
-					RemoveFlight(obsoleteFlight);
-				}
-			}
-			if (eventCity->numberOfPassengers == remainingPassengers) {
-				viable = 1;
-				break;
-			}
-			if (stop) {
-				break;
-			}
-			if (!count) {
-				Flight* currFlight = flights;
-				flight = flights;
-				currFlight = currFlight->next;
-				while (currFlight) {
-					if ((currFlight->src->numberOfPassengers > 0) && (currFlight->dst->numberOfFlightsIn < flight->dst->numberOfFlightsIn)) {
-						flight = currFlight;
-					}
-					currFlight = currFlight->next;
-				}
-				int nPassengers = 0;
-				if (flight->numberOfSeats <= flight->dst->numberOfSeats) {
-					nPassengers = flight->numberOfSeats;
-				}
-				else {
-					nPassengers = flight->dst->numberOfSeats;
-				}
-				flight->dst->numberOfPassengers += nPassengers;
-				flight->dst->numberOfSeats -= nPassengers;
-				flight->src->numberOfPassengers -= nPassengers;
-				RemoveFlight(flight);
-			}
-			if (eventCity->numberOfPassengers == remainingPassengers) {
-				viable = 1;
-				break;
-			}
-			if (stop) {
+		for (i = 0; i < numberOfCities; i++) {
+			if (cities[i].numberOfPassengers > cities[i].numberOfSeats) {
+				viable = 0;
 				break;
 			}
 		}

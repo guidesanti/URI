@@ -22,6 +22,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2065_Supermarket_Line", "20
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2047_Fly_By_Night", "2047_Fly_By_Night\2047_Fly_By_Night.vcxproj", "{044097DF-2D27-4056-8689-EF8B838BA11C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1704_Arranging_Tasks", "1704_Arranging_Tasks\1704_Arranging_Tasks.vcxproj", "{E0F99B73-3422-474A-A0CC-F1FFBB1C95E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -86,6 +88,14 @@ Global
 		{044097DF-2D27-4056-8689-EF8B838BA11C}.Release|x64.Build.0 = Release|x64
 		{044097DF-2D27-4056-8689-EF8B838BA11C}.Release|x86.ActiveCfg = Release|Win32
 		{044097DF-2D27-4056-8689-EF8B838BA11C}.Release|x86.Build.0 = Release|Win32
+		{E0F99B73-3422-474A-A0CC-F1FFBB1C95E3}.Debug|x64.ActiveCfg = Debug|x64
+		{E0F99B73-3422-474A-A0CC-F1FFBB1C95E3}.Debug|x64.Build.0 = Debug|x64
+		{E0F99B73-3422-474A-A0CC-F1FFBB1C95E3}.Debug|x86.ActiveCfg = Debug|Win32
+		{E0F99B73-3422-474A-A0CC-F1FFBB1C95E3}.Debug|x86.Build.0 = Debug|Win32
+		{E0F99B73-3422-474A-A0CC-F1FFBB1C95E3}.Release|x64.ActiveCfg = Release|x64
+		{E0F99B73-3422-474A-A0CC-F1FFBB1C95E3}.Release|x64.Build.0 = Release|x64
+		{E0F99B73-3422-474A-A0CC-F1FFBB1C95E3}.Release|x86.ActiveCfg = Release|Win32
+		{E0F99B73-3422-474A-A0CC-F1FFBB1C95E3}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
