@@ -88,7 +88,7 @@ int main() {
 			if (y > w) {
 				teams[x].points += 2;
 				teams[z].points += 1;
-			} else if (x < y) {
+			} else if (y < w) {
 				teams[x].points += 1;
 				teams[z].points += 2;
 			} else {
@@ -132,10 +132,13 @@ int main() {
 		}
 		printf("Instancia %d\n", ++instanceNumber);
 		while (rank) {
-			printf("%d ", rank->number);
+			if (rank->next) {
+				printf("%d ", rank->number);
+			} else {
+				printf("%d\n", rank->number);
+			}
 			rank = rank->next;
 		}
-		printf("\n");
 	}
 
 	return 0;
