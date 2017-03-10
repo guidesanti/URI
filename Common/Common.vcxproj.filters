@@ -4,9 +4,6 @@
     <ClCompile Include="io.cpp">
       <Filter>io</Filter>
     </ClCompile>
-    <ClCompile Include="LinkedList.cpp">
-      <Filter>collections</Filter>
-    </ClCompile>
     <ClCompile Include="Stack.cpp">
       <Filter>collections</Filter>
     </ClCompile>
@@ -14,13 +11,13 @@
     <ClCompile Include="Queue.cpp">
       <Filter>collections</Filter>
     </ClCompile>
+    <ClCompile Include="LinkedList.cpp">
+      <Filter>Data Structures\Lists</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="io.h">
       <Filter>io</Filter>
-    </ClInclude>
-    <ClInclude Include="LinkedList.h">
-      <Filter>collections</Filter>
     </ClInclude>
     <ClInclude Include="Stack.h">
       <Filter>collections</Filter>
@@ -31,6 +28,9 @@
     <ClInclude Include="DoublyLinkedList.h">
       <Filter>collections</Filter>
     </ClInclude>
+    <ClInclude Include="LinkedList.h">
+      <Filter>Data Structures\Lists</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="io">
@@ -38,6 +38,12 @@
     </Filter>
     <Filter Include="collections">
       <UniqueIdentifier>{1d24b9c3-69e0-4065-b821-cee9be70a3cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data Structures">
+      <UniqueIdentifier>{a5e1947e-7daf-4b24-bf1e-d878e9c445a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data Structures\Lists">
+      <UniqueIdentifier>{9de78a68-b122-47be-8409-92fb711c0fed}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

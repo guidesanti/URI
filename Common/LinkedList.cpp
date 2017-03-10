@@ -2,8 +2,6 @@
 
 #include <stdlib.h>
 
-static LinkedListNode* LinkedList_CreateNode(int data);
-
 LinkedList* LinkedList_Create() {
 	LinkedList* list = (LinkedList*)malloc(sizeof(LinkedList));
 	if (!list) {
@@ -11,14 +9,14 @@ LinkedList* LinkedList_Create() {
 	}
 
 	list->First = NULL;
-	list->Size = 0;
+	list->Count = 0;
 
 	return list;
 }
 
-int LinkedList_Destroy(LinkedList* list) {
+void LinkedList_Destroy(LinkedList* list) {
 	if (!list) {
-		return -1;
+		return;
 	}
 
 	LinkedListNode* node = NULL;
@@ -29,168 +27,286 @@ int LinkedList_Destroy(LinkedList* list) {
 	}
 
 	free(list);
-
-	return 0;
 }
 
-int LinkedList_InsertBeginning(LinkedList* list, int data) {
+LinkedListNode* LinkedList_AddFirst(LinkedList* list, void* data) {
 	if (!list) {
-		return -1;
+		return NULL;
 	}
 
-	LinkedListNode* newNode = LinkedList_CreateNode(data);
+	LinkedListNode* newNode = (LinkedListNode*)malloc(sizeof(LinkedListNode));
 	if (!newNode) {
-		return -1;
+		return NULL;
 	}
-
+	newNode->Data = data;
 	newNode->Next = list->First;
 	list->First = newNode;
-
-	list->Size++;
-
-	return 0;
-}
-
-int	LinkedList_InsertAt(LinkedList* list, int data, int index) {
-	if (!list || (index < 0) || (index > list->Size)) {
-		return -1;
-	}
-
-	LinkedListNode* newNode = LinkedList_CreateNode(data);
-	if (!newNode) {
-		return -1;
-	}
-
-	if (index == 0) {
-		newNode->Next = list->First;
-		list->First = newNode;
-	} else {
-		int aux = 0;
-		LinkedListNode* node = list->First;
-		for (aux = 0; aux < (index - 1); aux++) {
-			node = node->Next;
-		}
-		newNode->Next = node->Next;
-		node->Next = newNode;
-	}
-
-	list->Size++;
-
-	return 0;
-}
-
-int LinkedList_RemoveBeginning(LinkedList* list) {
-	if (!list) {
-		return -1;
-	}
-
-	LinkedListNode* obsoleteNode = list->First;
-	if (obsoleteNode) {
-		list->First = obsoleteNode->Next;
-		free(obsoleteNode);
-		list->Size--;
-	}
-
-	return 0;
-}
-
-int LinkedList_RemoveAt(LinkedList* list, int index) {
-	if (!list || (index < 0) || (index >= list->Size)) {
-		return -1;
-	}
-
-	if (list->Size > 0) {
-		LinkedListNode* node = list->First;
-		if (index == 0) {
-			list->First = node->Next;
-			free(node);
-		}
-		else {
-			int aux = 0;
-			for (aux = 0; aux < (index - 1); aux++) {
-				node = node->Next;
-			}
-			LinkedListNode* obsoleteNode = node->Next;
-			node->Next = obsoleteNode->Next;
-			free(obsoleteNode);
-		}
-
-		list->Size--;
-	}
-
-	return 0;
-}
-
-int LinkedList_Remove(LinkedList* list, int data) {
-	if (!list) {
-		return -1;
-	}
-
-	if (list->Size > 0) {
-		LinkedListNode* node = list->First;
-		if (node->Data == data) {
-			list->First = node->Next;
-			free(node);
-			list->Size--;
-		}
-		else {
-			while (node->Next) {
-				if (node->Next->Data == data) {
-					LinkedListNode* obsoleteNode = node->Next;
-					node->Next = obsoleteNode->Next;
-					free(obsoleteNode);
-					list->Size--;
-					break;
-				}
-				node = node->Next;
-			}
-		}
-	}
-
-	return 0;
-}
-
-int LinkedList_Contains(LinkedList* list, int data) {
-	if (!list) {
-		return -1;
-	}
-
-	LinkedListNode* node = list->First;
-	while (node) {
-		if (node->Data == data) {
-			return 0;
-		}
-		node = node->Next;
-	}
-
-	return -1;
-}
-
-int LinkedList_Find(LinkedList* list, int data, LinkedListNode** outNode) {
-	if (!list || !outNode) {
-		return -1;
-	}
-
-	(*outNode) = NULL;
-
-	LinkedListNode* node = list->First;
-	while (node) {
-		if (node->Data == data) {
-			(*outNode) = node;
-			return 0;
-		}
-		node = node->Next;
-	}
-
-	return -1;
-}
-
-static LinkedListNode* LinkedList_CreateNode(int data) {
-	LinkedListNode* newNode = (LinkedListNode*)malloc(sizeof(LinkedListNode));
-	if (newNode) {
-		newNode->Data = data;
-		newNode->Next = NULL;
-	}
+	list->Count++;
 
 	return newNode;
+}
+
+LinkedListNode* LinkedList_AddLast(LinkedList* list, void* data) {
+	if (!list) {
+		return NULL;
+	}
+
+	LinkedListNode* newNode = (LinkedListNode*)malloc(sizeof(LinkedListNode));
+	if (!newNode) {
+		return NULL;
+	}
+	newNode->Data = data;
+	newNode->Next = NULL;
+
+	if (!list->First) {
+		list->First = newNode;
+	} else {
+		LinkedListNode* node = list->First;
+		while (node->Next) {
+			node = node->Next;
+		}
+		node->Next = newNode;
+	}
+	list->Count++;
+
+	return newNode;
+}
+
+LinkedListNode* LinkedList_AddBefore(LinkedList* list, LinkedListNode* node, void* data) {
+	if ((!list) || (!node)) {
+		return NULL;
+	}
+	
+	if (!list->First) {
+		return NULL;
+	}
+
+	LinkedListNode* newNode = (LinkedListNode*)malloc(sizeof(LinkedListNode));
+	if (!newNode) {
+		return NULL;
+	}
+	newNode->Data = data;
+	newNode->Next = node;
+
+	if (list->First == node) {
+		list->First = newNode;
+	} else {
+		LinkedListNode* prevNode = list->First;
+		while (prevNode->Next && (prevNode->Next != node)) {
+			prevNode = prevNode->Next;
+		}
+		if (!prevNode->Next) {
+			free(newNode);
+			return NULL;
+		}
+		prevNode->Next = newNode;
+	}
+
+	list->Count++;
+
+	return newNode;
+}
+
+LinkedListNode* LinkedList_AddAfter(LinkedList* list, LinkedListNode* node, void* data) {
+	if ((!list) || (!node)) {
+		return NULL;
+	}
+
+	if (!list->First) {
+		return NULL;
+	}
+
+	LinkedListNode* newNode = (LinkedListNode*)malloc(sizeof(LinkedListNode));
+	if (!newNode) {
+		return NULL;
+	}
+	newNode->Data = data;
+	newNode->Next = node->Next;
+
+	LinkedListNode* prevNode = list->First;
+	while (prevNode && (prevNode != node)) {
+		prevNode = prevNode->Next;
+	}
+	if (!prevNode) {
+		free(newNode);
+		return NULL;
+	}
+	node->Next = newNode;
+
+	list->Count++;
+
+	return newNode;
+}
+
+void* LinkedList_Remove(LinkedList* list, void* data) {
+	if (!list) {
+		return NULL;
+	}
+
+	if (!list->First) {
+		return NULL;
+	}
+
+	LinkedListNode* obsoleteNode = NULL;
+	if (list->First->Data == data) {
+		obsoleteNode = list->First;
+		list->First = list->First->Next;
+	} else {
+		LinkedListNode* prevNode = list->First;
+		while (prevNode->Next && (prevNode->Next->Data != data)) {
+			prevNode = prevNode->Next;
+		}
+		if (!prevNode->Next) {
+			return NULL;
+		}
+		obsoleteNode = prevNode->Next;
+		prevNode->Next = obsoleteNode->Next;
+	}
+	void* res = obsoleteNode->Data;
+	free(obsoleteNode);
+	list->Count--;
+
+	return res;
+}
+
+void* LinkedList_RemoveNode(LinkedList* list, LinkedListNode* node) {
+	if ((!list) || (!node)) {
+		return NULL;
+	}
+
+	if (!list->First) {
+		return NULL;
+	}
+
+	if (list->First == node) {
+		list->First = node->Next;
+	}
+	else {
+		LinkedListNode* prevNode = list->First;
+		while (prevNode->Next && (prevNode->Next != node)) {
+			prevNode = prevNode->Next;
+		}
+		if (!prevNode->Next) {
+			return NULL;
+		}
+		prevNode->Next = node->Next;
+	}
+	void* res = node->Data;
+	free(node);
+	list->Count--;
+
+	return res;
+}
+
+void* LinkedList_RemoveFirst(LinkedList* list) {
+	if (!list) {
+		return NULL;
+	}
+
+	if (!list->First) {
+		return NULL;
+	}
+
+	LinkedListNode* node = list->First;
+	list->First = node->Next;
+	void* res = node->Data;
+	free(node);
+	list->Count--;
+
+	return res;
+}
+
+void* LinkedList_RemoveLast(LinkedList* list) {
+	if (!list) {
+		return NULL;
+	}
+
+	if (!list->First) {
+		return NULL;
+	}
+
+	LinkedListNode* obsoleteNode = NULL;
+	if (!list->First->Next) {
+		obsoleteNode = list->First;
+		list->First = NULL;
+	} else {
+		LinkedListNode* prevNode = list->First;
+		while (prevNode->Next->Next != NULL) {
+			prevNode = prevNode->Next;
+		}
+		obsoleteNode = prevNode->Next;
+		prevNode->Next = NULL;
+	}
+	void* res = obsoleteNode->Data;
+	free(obsoleteNode);
+	list->Count--;
+
+	return res;
+}
+
+long LinkedList_Count(LinkedList* list) {
+	if (!list) {
+		return -1;
+	}
+
+	return list->Count;
+}
+
+void LinkedList_Clear(LinkedList* list) {
+	if (!list) {
+		return;
+	}
+
+	LinkedListNode* node = list->First;
+	LinkedListNode* obsoleteNode = list->First;
+	while (node) {
+		obsoleteNode = node;
+		node = node->Next;
+		free(obsoleteNode);
+	}
+	list->First = NULL;
+	list->Count = 0;
+}
+
+int LinkedList_Contains(LinkedList* list, void* data) {
+	if (!list) {
+		return 0;
+	}
+
+	LinkedListNode* node = list->First;
+	while (node) {
+		if (node->Data == data) {
+			return 1;
+		}
+		node = node->Next;
+	}
+
+	return 0;
+}
+
+LinkedListNode* LinkedList_Find(LinkedList* list, void* data, EqualsHandler equals) {
+	if (!list) {
+		return NULL;
+	}
+
+	if (equals) {
+		LinkedListNode* node = list->First;
+		while (node) {
+			if (equals(node->Data, data)) {
+				return node;
+			}
+			node = node->Next;
+		}
+	} else
+	{
+		LinkedListNode* node = list->First;
+		while (node) {
+			if (node->Data == data) {
+				return node;
+			}
+			node = node->Next;
+		}
+	}
+
+	return NULL;
 }
