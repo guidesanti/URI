@@ -1,0 +1,9 @@
+Input:
+ACGTC
+CGT
+CCCT
+AG
+
+Output:
+Resistente
+Nao resistente
