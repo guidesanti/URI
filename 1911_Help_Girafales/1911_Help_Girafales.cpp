@@ -21,7 +21,7 @@ struct Student {
 // Data
 int numberOfStudents = 0;					// The number of students in the class
 int numberOfAttendees = 0;					// The number of students attending the class
-Student students[MAX_NUMBER_OF_STUDENTS];	// The students list
+Student studentsTree[MAX_NUMBER_OF_STUDENTS];	// The students list
 int result = 0;								// The number of false signatures
 int i = 0;									// Loop control
 int j = 0;									// Loop control
@@ -41,11 +41,11 @@ int main() {
 
 		// Reset
 		result = 0;
-		memset(students, 0, sizeof(students));
+		memset(studentsTree, 0, sizeof(studentsTree));
 
 		// Read the students names and signatures
 		for (i = 0; i < numberOfStudents; i++) {
-			scanf("%s %s", students[i].name, students[i].signature);
+			scanf("%s %s", studentsTree[i].name, studentsTree[i].signature);
 		}
 
 		// Read the number of attendees
@@ -60,10 +60,10 @@ int main() {
 
 			// Check the name and signature
 			for (j = 0; j < numberOfStudents; j++) {
-				if (strcmp(students[j].name, name) == 0) {
+				if (strcmp(studentsTree[j].name, name) == 0) {
 					count = 0;
 					for (k = 0; k < MAX_SIGNATURE_LENGTH; k++) {
-						if (students[j].signature[k] != signature[k]) {
+						if (studentsTree[j].signature[k] != signature[k]) {
 							count++;
 							if (count > 1) {
 								result++;

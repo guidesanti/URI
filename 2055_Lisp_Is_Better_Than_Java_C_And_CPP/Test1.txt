@@ -1,0 +1,48 @@
+Input:
+23
+an
+blau
+bo"s
+Boot
+Bo"
+da
+fern
+fort
+Fee
+Fest
+je
+jemand
+mir
+Mix
+Mixer
+neu
+Name
+o"d
+Ort
+so
+Tor
+Torf
+Wasser
+6
+5624-82
+4824
+10/783--5
+1078-913-5
+381482
+04824
+0
+
+Output:
+Instancia 1
+5624-82: Mix Tor
+5624-82: mir Tor
+4824: Tor 4
+4824: Torf
+4824: fort
+10/783--5: je Bo" da
+10/783--5: je bo"s 5
+10/783--5: neu o"d 5
+381482: so 1 Tor
+04824: 0 Tor 4
+04824: 0 Torf
+04824: 0 fort
