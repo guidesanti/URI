@@ -1,58 +1,48 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-/// Constrainsts
-#define MAX_N	(100000)	// N -> (2 <= N <= 100000)
-// Xi -> (1 <= Xi <= 1000000000)
-// Q -> 1 <= Q <= 99999
+// Constrainsts
+#define MAX_STUDENTS	(100000)
 
-// Data sturcture
+// Types
 typedef struct Student Student;
 
 struct Student {
-	int id;
-	Student* parent;
-	Student* left;
-	Student* right;
+	int			id;
+	Student*	parent;
+	Student*	left;
+	Student*	right;
 };
 
 // Data
 int N = 0;
 int Q = 0;
-//int Qi[MAX_Q];
-Student* studentsTree = NULL;
-Student studentsList[MAX_N];
-int index = 0;
+Student* tree = NULL;
+Student* min = NULL;
+Student* max = NULL;
+Student students[MAX_STUDENTS] = { 0 };
 
-void Add(int number, int id) {
-	Student* newStudent = &studentsList[index++];
+void Add(Student* root, int index, int id) {
+	Student* newStudent = &students[index];
 	newStudent->id = id;
-	newStudent->parent = NULL;
-	newStudent->left = NULL;
-	newStudent->right = NULL;
 
-	if (!studentsTree) {
-		studentsTree = newStudent;
-	} else {
-		Student* student = studentsTree;
-		while (1) {
-			if (id < student->id) {
-				if (student->left) {
-					student = student->left;
-				} else {
-					newStudent->parent = student;
-					student->left = newStudent;
-					break;
-				}
-			} else {
-				if (student->right) {
-					student = student->right;
-				}
-				else {
-					newStudent->parent = student;
-					student->right = newStudent;
-					break;
-				}
+	Student* student = root;
+	while (student) {
+		if (id < student->id) {
+			if (!(student->left)) {
+				student->left = newStudent;
+				newStudent->parent = student;
+				break;
 			}
+			student = student->left;
+		}
+		else {
+			if (!(student->right)) {
+				student->right = newStudent;
+				newStudent->parent = student;
+				break;
+			}
+			student = student->right;
 		}
 	}
 }
@@ -64,27 +54,43 @@ int main() {
 	// Read N (the number of students)
 	scanf("%d", &N);
 
+	// Read X0
+	tree = &students[0];
+	scanf("%d", &(tree->id));
+	min = tree;
+	max = tree;
+
 	// Read Xi (the students IDs)
-	for (i = 0; i < N; i++) {
+	for (i = 1; i < N; i++) {
 		int id = 0;
 		scanf("%d", &id);
-		Add(i + 1, id);
+		if (id < min->id) {
+			Add(min, i, id);
+			min = &students[i];
+		} else if (id > max->id) {
+			Add(max, i, id);
+			max = &students[i];
+		} else {
+			Add(tree, i, id);
+		}
 	}
 
 	// Read Q (the number of deleted students IDs)
 	scanf("%d", &Q);
 
 	// Read Qi
-	for (i = 0; i < Q; i++) {
-		int number = 0;
-		scanf("%d", &number);
-		number--;
-		if (i < (Q - 1)) {
-			printf("%d ", studentsList[number].parent->id);
-		} else {
-			printf("%d\n", studentsList[number].parent->id);
+	int number = 0;
+	if (Q > 1) {
+		for (i = 0; i < (Q - 1); i++) {
+			scanf("%d", &number);
+			number--;
+			printf("%d ", students[number].parent->id);
 		}
 	}
+	scanf("%d", &number);
+	number--;
+	printf("%d", students[number].parent->id);
+	printf("\n");
 
 	return 0;
 }

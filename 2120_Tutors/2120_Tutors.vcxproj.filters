@@ -7,5 +7,6 @@
     <Text Include="Solved.txt" />
     <Text Include="Test1.txt" />
     <Text Include="Test2.txt" />
+    <Text Include="Test3.txt" />
   </ItemGroup>
 </Project>
