@@ -1,0 +1,5 @@
+Input:
+30
+
+Output:
+60 minutos
