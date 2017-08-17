@@ -153,9 +153,6 @@
   <ItemGroup>
     <ClCompile Include="1013_The_Greatest.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="Solved.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

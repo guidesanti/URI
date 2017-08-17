@@ -3,8 +3,4 @@
   <ItemGroup>
     <ClCompile Include="1017_Fuel_Spent.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="Test1.txt" />
-    <Text Include="Solved.txt" />
-  </ItemGroup>
 </Project>

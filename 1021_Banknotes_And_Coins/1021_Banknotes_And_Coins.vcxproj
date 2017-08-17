@@ -19,9 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Solved.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="1021_Banknotes_And_Coins.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

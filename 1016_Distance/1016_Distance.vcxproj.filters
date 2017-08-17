@@ -3,8 +3,4 @@
   <ItemGroup>
     <ClCompile Include="1016_Distance.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="Solved.txt" />
-    <Text Include="Test1.txt" />
-  </ItemGroup>
 </Project>

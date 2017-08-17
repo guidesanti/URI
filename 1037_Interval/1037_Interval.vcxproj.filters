@@ -3,7 +3,4 @@
   <ItemGroup>
     <ClCompile Include="1037_Interval.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="Solved.txt" />
-  </ItemGroup>
 </Project>

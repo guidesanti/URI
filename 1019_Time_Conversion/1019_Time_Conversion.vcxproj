@@ -139,10 +139,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="Solved.txt" />
-    <Text Include="Test1.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="1019_Time_Conversion.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

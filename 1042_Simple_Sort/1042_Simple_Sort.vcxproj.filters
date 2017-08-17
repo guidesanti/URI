@@ -3,8 +3,4 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="Solved.txt" />
-    <Text Include="Sample.txt" />
-  </ItemGroup>
 </Project>

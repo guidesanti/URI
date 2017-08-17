@@ -3,7 +3,4 @@
   <ItemGroup>
     <ClCompile Include="1020_Age_In_Days.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="Solved.txt" />
-  </ItemGroup>
 </Project>

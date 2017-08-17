@@ -141,10 +141,6 @@
   <ItemGroup>
     <ClCompile Include="1015_Distance_Between_Two_Points.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="Solved.txt" />
-    <Text Include="Test1.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
