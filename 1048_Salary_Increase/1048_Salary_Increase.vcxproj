@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{2D852176-31D1-4B06-876C-04008F684A39}</ProjectGuid>
+    <ProjectGuid>{1DE5A19B-7A44-44F1-A48D-64709227037E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>My1047_Game_Time_With_Minutes</RootNamespace>
+    <RootNamespace>My1048_Salary_Increase</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

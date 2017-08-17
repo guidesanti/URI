@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{2D852176-31D1-4B06-876C-04008F684A39}</ProjectGuid>
+    <ProjectGuid>{B15153EC-DAC7-40D5-9D44-41E9AC4C4B02}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>My1047_Game_Time_With_Minutes</RootNamespace>
+    <RootNamespace>My1078_Multiplication_Table</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -140,9 +140,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Solved.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
